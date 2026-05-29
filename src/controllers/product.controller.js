@@ -1,65 +1,78 @@
 import * as productService from '../service/product.service.js'
 
-export const getAllProducts = (req,res) =>{
-const allProducts = productService.getProducts()
-return res.status(200).json({
-    ok: true,
-    data:allProducts
-})
+// export const getAllProducts = (req,res) =>{
+// const allProducts = productService.getProducts()
+// return res.status(200).json({
+    // ok: true,
+    // data:allProducts
+// })
+// }
+
+export const getAllMovies = async (req,res,next) =>{
+    try{
+        const data = await productService.getMovies()
+        res.status(200).json({
+            message:'succes',
+            data: data
+        })
+
+    } catch(error){
+        next(error)
+    }
 }
 
-export const getAllProductsById = (req,res) =>{
-    const {id} = req.params
-    const product = productService.getProductsById(id)
+// export const getAllProductsById = (req,res) =>{
+//     const {id} = req.params
+//     const product = productService.getProductsById(id)
     
-    if(!product) return res.status(404).json({ok: false,
-            error: { message: "Producto no encontrado" }})
+//     if(!product) return res.status(404).json({ok: false,
+//             error: { message: "Producto no encontrado" }})
 
-    return res.status(200).json({
-    ok: true,
-    data:product
-})
-}
-export const createProduct = (req, res) =>{
-    const {name,price} = req.body
-    if(!name || price === undefined || price < 0) return  res.status(404).json({
-        ok: false,
-        error: { message: "Error al crear el producto" }})
+//     return res.status(200).json({
+//     ok: true,
+//     data:product
+// })
+// }
+// export const createProduct = (req, res) =>{
+//     const {name,price} = req.body
+//     if(!name || price === undefined || price < 0) return  res.status(404).json({
+//         ok: false,
+//         error: { message: "Error al crear el producto" }})
 
-    const newProduct = productService.createProduct({name,price})
-    return res.status(201).json({
-        ok:true,
-        data: newProduct,
-    })
+//     const newProduct = productService.createProduct({name,price})
+//     return res.status(201).json({
+//         ok:true,
+//         data: newProduct,
+//     })
 
-}
+// }
 
-export const updateProduct = (req,res) =>{
-    const {id} = req.params 
-    const data = req.body
-    const update = productService.updateProduct(id,data) 
+// export const updateProduct = (req,res) =>{
+//     const {id} = req.params 
+//     const data = req.body
+//     const update = productService.updateProduct(id,data) 
 
-    if(!update) return res.status(404).json({
-        ok: false,
-        error: { message: "Producto no encontrado" }})
+//     if(!update) return res.status(404).json({
+//         ok: false,
+//         error: { message: "Producto no encontrado" }})
 
-    return res.status(200).json({
-    ok: true,
-    data:update
-    })    
-}
+//     return res.status(200).json({
+//     ok: true,
+//     data:update
+//     })    
+// }
 
-export const deleteProduct = (req,res) =>{
-    const {id} = req.params;
+// export const deleteProduct = (req,res) =>{
+//     const {id} = req.params;
 
-    const deleted = productService.deleteProduct(id);
+//     const deleted = productService.deleteProduct(id);
 
-    if(!deleted) return res.status(404).json({
-        ok: false,
-        error: { message: "Producto no encontrado" }})
+//     if(!deleted) return res.status(404).json({
+//         ok: false,
+//         error: { message: "Producto no encontrado" }})
 
-    return res.status(200).json({
-    ok: true,
-    data: deleted
- })
-}
+//     return res.status(200).json({
+//     ok: true,
+//     data: deleted
+//  })
+// }

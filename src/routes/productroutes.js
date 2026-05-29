@@ -1,21 +1,25 @@
 import express from 'express'
 
 import * as productController from '../controllers/product.controller.js' 
+
+
 const router = express.Router()
 
-//route Allproducts  
-router.get('/api/products', productController.getAllProducts);
+router.get('/api/movies', productController.getAllMovies)
 
-// route products for ID
-router.get('/api/products/:id', productController.getAllProductsById)
+// //route Allproducts  
+// router.get('/api/products', productController.getAllProducts);
 
-// create product
-router.post('/api/products', productController.createProduct)
+// // route products for ID
+// router.get('/api/products/:id', productController.getAllProductsById)
 
-// update product
-router.put('/api/products/:id', productController.updateProduct)
+// // create product
+// router.post('/api/products', productController.createProduct)
 
-// delete product
+// // update product
+// router.put('/api/products/:id', productController.updateProduct)
 
-router.delete('/api/products/:id', productController.deleteProduct)
+// // delete product
+
+// router.delete('/api/products/:id', productController.deleteProduct)
 export default router
