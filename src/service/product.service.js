@@ -1,9 +1,6 @@
 // import { products } from "../db/products.js"
 import prisma from "../lib/prisma.js"
-// Show products
-// export const getProducts = () =>{
-    // return products}
-
+// Show movies
     export const getMovies = () =>{
         return prisma.movies.findMany({
             orderBy:{id : "asc"},
@@ -11,7 +8,15 @@ import prisma from "../lib/prisma.js"
     } 
 
 // Filter products for ID
-// export const getProductsById = (id) =>{
+
+export const movieById = (id) =>{
+    return prisma.movies.findUnique({
+       where:{ id }
+    })
+
+}
+
+//  export const getProductsById = (id) =>{
 //     const foundProduct = products.find((p) => p.id === Number(id))
 //     return foundProduct
 // }

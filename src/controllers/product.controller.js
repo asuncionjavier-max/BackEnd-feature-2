@@ -33,6 +33,26 @@ export const getAllMovies = async (req,res,next) =>{
 //     data:product
 // })
 // }
+export const getMovieById = async (req,res,next) => {
+    try{
+        const id = parseInt(req.params.id)
+        const movie = await productService.movieById(id)
+        if(!movie){
+            return res.status(404).json({
+                ok:false,
+                message: 'Movie not found'
+
+            })
+            }
+            res.status(200).json({
+                message:'succes',
+                data:movie
+            })
+        }catch(error){
+                next(error)
+    }
+}
+
 // export const createProduct = (req, res) =>{
 //     const {name,price} = req.body
 //     if(!name || price === undefined || price < 0) return  res.status(404).json({

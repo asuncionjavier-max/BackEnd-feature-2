@@ -7,6 +7,7 @@ const router = express.Router()
 
 router.get('/api/movies', productController.getAllMovies)
 
+router.get('/api/movies/:id', productController.getMovieById)
 // //route Allproducts  
 // router.get('/api/products', productController.getAllProducts);
 
